@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hangerpartyy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:    #0e0e0e;
+      --paper:  #f7f5f2;
+      --warm:   #c8b89a;
+      --mid:    #8a8279;
+      --rule:   #d8d3cc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 48px;
+      background: var(--paper);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 20px;
+      letter-spacing: 0.18em;
+      text-transform: lowercase;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--mid);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 73px;
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 48px 80px 72px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--warm);
+      margin-bottom: 28px;
+    }
+
+    .hero-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(52px, 6vw, 88px);
+      line-height: 1.04;
+      letter-spacing: -0.01em;
+      margin-bottom: 32px;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--warm);
+    }
+
+    .hero-sub {
+      color: var(--mid);
+      font-size: 14px;
+      max-width: 340px;
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 14px 36px;
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+
+    .btn-primary:hover { background: #2a2a2a; }
+
+    .hero-visual {
+      background: #e8e3dc;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-visual-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Signature element: a large typographic "H" watermark behind a garment silhouette */
+    .hero-watermark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 480px;
+      font-weight: 300;
+      color: rgba(200,184,154,0.18);
+      line-height: 1;
+      user-select: none;
+      position: absolute;
+    }
+
+    .hero-garment {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .hero-garment svg {
+      width: 160px;
+      opacity: 0.55;
+    }
+
+    .hero-caption {
+      position: absolute;
+      bottom: 36px;
+      right: 36px;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+    }
+
+    /* MARQUEE */
+    .marquee-wrap {
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      overflow: hidden;
+      padding: 14px 0;
+      background: var(--paper);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      animation: marquee 22s linear infinite;
+      white-space: nowrap;
+    }
+
+    .marquee-track span {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 18px;
+      color: var(--warm);
+      padding: 0 40px;
+    }
+
+    .marquee-track span.sep {
+      font-style: normal;
+      color: var(--rule);
+      padding: 0;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* COLLECTION TEASER */
+    .collection {
+      padding: 120px 72px;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--warm);
+      margin-bottom: 56px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+      max-width: 80px;
+    }
+
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+
+    .collection-item {
+      background: #e4dfd8;
+      aspect-ratio: 3/4;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .collection-item:hover .item-overlay { opacity: 1; }
+
+    .item-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(14,14,14,0.35);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .item-overlay span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      color: var(--paper);
+      letter-spacing: 0.08em;
+    }
+
+    .item-label {
+      position: absolute;
+      bottom: 18px;
+      left: 20px;
+    }
+
+    .item-label p {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .item-label strong {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+    }
+
+    /* placeholder garment shapes in the grid */
+    .item-shape {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .item-shape svg { opacity: 0.3; }
+
+    /* ABOUT / MANIFESTO */
+    .manifesto {
+      padding: 120px 72px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      border-top: 1px solid var(--rule);
+    }
+
+    .manifesto-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 3.5vw, 52px);
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    .manifesto-quote em { font-style: italic; color: var(--warm); }
+
+    .manifesto-body p {
+      color: var(--mid);
+      font-size: 14px;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+
+    /* CONTACT */
+    .contact {
+      padding: 120px 72px;
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .contact .section-label { color: var(--warm); }
+    .contact .section-label::after { background: #2a2a2a; }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(38px, 4vw, 62px);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .contact-headline em { font-style: italic; color: var(--warm); }
+
+    .contact-sub {
+      color: #8a8279;
+      font-size: 14px;
+      line-height: 1.8;
+      max-width: 360px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #2a2a2a;
+      color: var(--paper);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      padding: 10px 0;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder { color: #3a3a3a; }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus { border-color: var(--warm); }
+
+    .field select { appearance: none; cursor: pointer; }
+    .field select option { background: var(--ink); }
+
+    .field textarea { resize: none; height: 100px; }
+
+    .btn-submit {
+      align-self: flex-start;
+      padding: 14px 40px;
+      background: var(--warm);
+      color: var(--ink);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      transition: opacity 0.2s;
+      margin-top: 8px;
+    }
+
+    .btn-submit:hover { opacity: 0.85; }
+
+    /* FOOTER */
+    footer {
+      padding: 36px 72px;
+      background: #080808;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    footer .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      letter-spacing: 0.18em;
+      color: var(--mid);
+    }
+
+    footer p {
+      font-size: 11px;
+      color: #3a3a3a;
+      letter-spacing: 0.08em;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .hero-text { padding: 60px 24px; }
+      .collection { padding: 80px 24px; }
+      .collection-grid { grid-template-columns: 1fr 1fr; }
+      .manifesto { grid-template-columns: 1fr; padding: 80px 24px; gap: 40px; }
+      .contact { padding: 80px 24px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { padding: 28px 24px; flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">hangerpartyy</a>
+    <ul class="nav-links">
+      <li><a href="#collection">Collection</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">New Collection — 2026</p>
+      <h1 class="hero-headline">Dressed<br/>for the<br/><em>woman you are.</em></h1>
+      <p class="hero-sub">Bold colours. Clean cuts. Clothes that work as hard as you do — without costing the earth. hangerpartyy is for the Indian working woman who refuses to blend in.</p>
+      <a href="#contact" class="btn-primary">Explore the Collection</a>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-visual-inner">
+        <div class="hero-watermark">H</div>
+        <div class="hero-garment">
+          <!-- hanger / garment SVG icon -->
+          <svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 18 C60 18 60 10 68 10 C76 10 76 20 68 22" stroke="#0e0e0e" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+            <path d="M68 22 L60 30" stroke="#0e0e0e" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M60 30 L10 75 Q8 78 12 80 L108 80 Q112 78 110 75 Z" stroke="#0e0e0e" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+            <rect x="20" y="80" width="80" height="50" rx="2" stroke="#0e0e0e" stroke-width="1.5" fill="none"/>
+          </svg>
+        </div>
+      </div>
+      <span class="hero-caption">Bold. Classy. Yours.</span>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span>hangerpartyy</span><span class="sep">·</span>
+      <span>Bold & Classy</span><span class="sep">·</span>
+      <span>Made for Working Women</span><span class="sep">·</span>
+      <span>hangerpartyy</span><span class="sep">·</span>
+      <span>Affordable Luxury</span><span class="sep">·</span>
+      <span>Proudly Indian</span><span class="sep">·</span>
+      <span>hangerpartyy</span><span class="sep">·</span>
+      <span>Bold & Classy</span><span class="sep">·</span>
+      <span>Made for Working Women</span><span class="sep">·</span>
+      <span>hangerpartyy</span><span class="sep">·</span>
+      <span>Affordable Luxury</span><span class="sep">·</span>
+      <span>Proudly Indian</span><span class="sep">·</span>
+    </div>
+  </div>
+
+  <!-- COLLECTION -->
+  <section class="collection" id="collection">
+    <p class="section-label">The Collection</p>
+    <div class="collection-grid">
+      <!-- Item 1: Shirts -->
+      <div class="collection-item">
+        <div class="item-shape">
+          <!-- Shirt silhouette -->
+          <svg width="100" viewBox="0 0 80 100" fill="none"><path d="M20 5 L10 30 L30 35 L30 85 L50 85 L50 35 L70 30 L60 5 Z" stroke="#0e0e0e" stroke-width="1.2" fill="none"/><path d="M20 5 Q30 12 40 10 Q50 12 60 5" stroke="#0e0e0e" stroke-width="1.2" fill="none"/></svg>
+        </div>
+        <div class="item-overlay"><span>Shop Shirts</span></div>
+        <div class="item-label"><p>Category</p><strong>Shirts</strong></div>
+      </div>
+      <!-- Item 2: Dresses -->
+      <div class="collection-item" style="background:#ddd8d0;">
+        <div class="item-shape">
+          <!-- Dress silhouette -->
+          <svg width="100" viewBox="0 0 80 110" fill="none"><path d="M25 5 Q40 2 55 5 L65 30 L50 35 L55 105 L25 105 L30 35 L15 30 Z" stroke="#0e0e0e" stroke-width="1.2" fill="none"/><path d="M25 5 Q32 14 40 12 Q48 14 55 5" stroke="#0e0e0e" stroke-width="1.2" fill="none"/></svg>
+        </div>
+        <div class="item-overlay"><span>Shop Dresses</span></div>
+        <div class="item-label"><p>Category</p><strong>Dresses</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto" id="about">
+    <div class="manifesto-quote">
+      Clothes that let you move through the world <em>quietly confident.</em>
+    </div>
+    <div class="manifesto-body">
+      <p>hangerpartyy was built on a simple belief: that getting dressed should feel effortless. Not because you don't care — but because the clothes do the work.</p>
+      <p>Every piece is cut with intention, in fabrics chosen for how they feel as much as how they look. We're not chasing trends. We're building a wardrobe that holds its ground, season after season.</p>
+      <p>Clean lines. Considered details. Clothes made to be lived in.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT / INQUIRY -->
+  <section class="contact" id="contact">
+    <p class="section-label">Get in Touch</p>
+    <div class="contact-inner">
+      <div>
+        <h2 class="contact-headline">Let's find your <em>next</em> piece.</h2>
+        <p class="contact-sub">Have a question about sizing, availability, or a custom order? Send us a message and we'll get back to you within 24 hours.</p>
+      </div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="field">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" placeholder="Alex" />
+          </div>
+          <div class="field">
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" placeholder="Kim" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="alex@email.com" />
+        </div>
+        <div class="field">
+          <label for="interest">I'm interested in</label>
+          <select id="interest">
+            <option value="">Select a category</option>
+            <option>Shirts</option>
+            <option>Dresses</option>
+            <option>Custom / Wholesale</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell us what you're looking for…"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message</button>
+        <p id="form-confirm" style="color:#c8b89a;font-size:13px;display:none;">✓ Message sent — we'll be in touch soon.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="logo">hangerpartyy</span>
+    <p>© 2026 hangerpartyy. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('form-confirm').style.display = 'block';
+      e.target.querySelector('.btn-submit').textContent = 'Sent';
+      e.target.querySelector('.btn-submit').disabled = true;
+    }
+  </script>
+</body>
+</html>
