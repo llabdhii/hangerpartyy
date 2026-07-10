@@ -125,7 +125,6 @@
       text-transform: uppercase;
       color: var(--paper);
       writing-mode: vertical-rl;
-      text-orientation: mixed;
       text-shadow: 0 1px 4px rgba(0,0,0,0.4);
     }
 
@@ -178,40 +177,83 @@
     .dresses-section { padding: 100px 72px; }
     .dresses-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
     }
-    .dress-item {
+
+    /* DRESS CARD WITH CAROUSEL */
+    .dress-card {
+      position: relative;
+      background: #e4dfd8;
+    }
+    .carousel {
       position: relative;
       aspect-ratio: 3/4;
       overflow: hidden;
-      background: #e4dfd8;
-      cursor: pointer;
     }
-    .dress-item img {
-      width: 100%;
+    .carousel-slides {
+      display: flex;
+      height: 100%;
+      transition: transform 0.4s ease;
+    }
+    .carousel-slides img {
+      min-width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: top;
-      transition: transform 0.4s ease;
     }
-    .dress-item:hover img { transform: scale(1.04); }
-    .dress-item:hover .dress-overlay { opacity: 1; }
-    .dress-overlay {
+    .carousel-btn {
       position: absolute;
-      inset: 0;
-      background: rgba(14,14,14,0.3);
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.7);
+      border: none;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      font-size: 14px;
       display: flex;
-      align-items: flex-end;
-      padding: 20px;
-      opacity: 0;
-      transition: opacity 0.3s;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      transition: background 0.2s;
     }
-    .dress-overlay span {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
-      color: var(--paper);
-      letter-spacing: 0.06em;
+    .carousel-btn:hover { background: rgba(255,255,255,0.95); }
+    .carousel-btn.prev { left: 8px; }
+    .carousel-btn.next { right: 8px; }
+    .carousel-dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 2;
+    }
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .dot.active { background: white; }
+    .dress-info {
+      padding: 16px 20px;
+    }
+    .dress-info p {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 4px;
+    }
+    .dress-info strong {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--ink);
+      letter-spacing: 0.04em;
     }
 
     /* SHIRTS SECTION */
@@ -331,7 +373,7 @@
       .hero-visual { height: 60vw; }
       .hero-text { padding: 60px 24px; }
       .dresses-section, .shirts-section { padding: 60px 24px; }
-      .dresses-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .dresses-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
       .manifesto { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
       .contact { padding: 60px 24px; }
       .contact-inner { grid-template-columns: 1fr; gap: 48px; }
@@ -365,7 +407,7 @@
       <a href="#dresses" class="btn-primary">Explore the Collection</a>
     </div>
     <div class="hero-visual">
-      <img src="IMG_3214.jpg" alt="hangerpartyy hero look" />
+      <img src="1000188136.jpg" alt="hangerpartyy hero look" />
       <span class="hero-caption">Bold. Classy. Yours.</span>
     </div>
   </section>
@@ -393,104 +435,255 @@
     <p class="section-label">Dresses</p>
     <div class="dresses-grid">
 
-      <div class="dress-item">
-        <img src="IMG_3195.jpg" alt="Black Tie-Dye Mermaid Dress" />
-        <div class="dress-overlay"><span>Black Tie-Dye Mermaid Dress</span></div>
+      <!-- Dress 1: Black Tie-Dye -->
+      <div class="dress-card">
+        <div class="carousel" id="c1">
+          <div class="carousel-slides">
+            <img src="IMG_3196.jpg" alt="Black Tie-Dye Mermaid Dress" />
+            <img src="IMG_3195.jpg" alt="Black Tie-Dye Mermaid Dress" />
+            <img src="Photoroom-20260710_183138.jpg" alt="Black Tie-Dye Mermaid Dress" />
+          </div>
+          <button class="carousel-btn prev" onclick="slide('c1',-1)">&#8592;</button>
+          <button class="carousel-btn next" onclick="slide('c1',1)">&#8594;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goTo('c1',0)"></div>
+            <div class="dot" onclick="goTo('c1',1)"></div>
+            <div class="dot" onclick="goTo('c1',2)"></div>
+          </div>
+        </div>
+        <div class="dress-info"><p>Dresses</p><strong>Black Tie-Dye Mermaid Dress</strong></div>
       </div>
 
-      <div class="dress-item">
-        <img src="IMG_3201.jpg" alt="White & Gold Embroidered Midi Dress" />
-        <div class="dress-overlay"><span>White & Gold Embroidered Midi Dress</span></div>
+      <!-- Dress 2: Coral Ruffle Maxi -->
+      <div class="dress-card">
+        <div class="carousel" id="c2">
+          <div class="carousel-slides">
+            <img src="IMG_3198.jpg" alt="Coral Ruffle Maxi Dress" />
+            <img src="IMG_3243.jpg" alt="Coral Ruffle Maxi Dress" />
+            <img src="1000188124.jpg" alt="Coral Ruffle Maxi Dress" />
+          </div>
+          <button class="carousel-btn prev" onclick="slide('c2',-1)">&#8592;</button>
+          <button class="carousel-btn next" onclick="slide('c2',1)">&#8594;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goTo('c2',0)"></div>
+            <div class="dot" onclick="goTo('c2',1)"></div>
+            <div class="dot" onclick="goTo('c2',2)"></div>
+          </div>
+        </div>
+        <div class="dress-info"><p>Dresses</p><strong>Coral Ruffle Maxi Dress</strong></div>
       </div>
 
-      <div class="dress-item">
-        <img src="IMG_3202.jpg" alt="Pink Striped Shirt Dress" />
-        <div class="dress-overlay"><span>Pink Striped Shirt Dress</span></div>
+      <!-- Dress 3: White & Gold Embroidered -->
+      <div class="dress-card">
+        <div class="carousel" id="c3">
+          <div class="carousel-slides">
+            <img src="IMG_3202.jpg" alt="White & Gold Embroidered Midi Dress" />
+            <img src="1000188105.jpg" alt="White & Gold Embroidered Midi Dress" />
+            <img src="1000188132.jpg" alt="White & Gold Embroidered Midi Dress" />
+            <img src="1000188101.jpg" alt="White & Gold Embroidered Midi Dress" />
+          </div>
+          <button class="carousel-btn prev" onclick="slide('c3',-1)">&#8592;</button>
+          <button class="carousel-btn next" onclick="slide('c3',1)">&#8594;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goTo('c3',0)"></div>
+            <div class="dot" onclick="goTo('c3',1)"></div>
+            <div class="dot" onclick="goTo('c3',2)"></div>
+            <div class="dot" onclick="goTo('c3',3)"></div>
+          </div>
+        </div>
+        <div class="dress-info"><p>Dresses</p><strong>White & Gold Embroidered Midi Dress</strong></div>
       </div>
 
-      <div class="dress-item">
-        <img src="IMG_3204.jpg" alt="Pink Ruffle Maxi Dress" />
-        <div class="dress-overlay"><span>Pink Ruffle Maxi Dress</span></div>
+      <!-- Dress 4: Powder Blue -->
+      <div class="dress-card">
+        <div class="carousel" id="c4">
+          <div class="carousel-slides">
+            <img src="1000188118.jpg" alt="Powder Blue Embroidered Maxi Dress" />
+            <img src="1000188142.jpg" alt="Powder Blue Embroidered Maxi Dress" />
+            <img src="1000188102.jpg" alt="Powder Blue Embroidered Maxi Dress" />
+          </div>
+          <button class="carousel-btn prev" onclick="slide('c4',-1)">&#8592;</button>
+          <button class="carousel-btn next" onclick="slide('c4',1)">&#8594;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goTo('c4',0)"></div>
+            <div class="dot" onclick="goTo('c4',1)"></div>
+            <div class="dot" onclick="goTo('c4',2)"></div>
+          </div>
+        </div>
+        <div class="dress-info"><p>Dresses</p><strong>Powder Blue Embroidered Maxi Dress</strong></div>
       </div>
 
-      <div class="dress-item">
-        <img src="IMG_3205.jpg" alt="Blue Gold Floral Mini Dress" />
-        <div class="dress-overlay"><span>Blue Gold Floral Mini Dress</span></div>
+      <!-- Dress 5: Pink Striped -->
+      <div class="dress-card">
+        <div class="carousel" id="c5">
+          <div class="carousel-slides">
+            <img src="1000188130.jpg" alt="Pink Striped Shirt Dress" />
+            <img src="1000188113.webp" alt="Pink Striped Shirt Dress" />
+            <img src="1000188115.webp" alt="Pink Striped Shirt Dress" />
+            <img src="1000188110.jpg" alt="Pink Striped Shirt Dress" />
+          </div>
+          <button class="carousel-btn prev" onclick="slide('c5',-1)">&#8592;</button>
+          <button class="carousel-btn next" onclick="slide('c5',1)">&#8594;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goTo('c5',0)"></div>
+            <div class="dot" onclick="goTo('c5',1)"></div>
+            <div class="dot" onclick="goTo('c5',2)"></div>
+            <div class="dot" onclick="goTo('c5',3)"></div>
+          </div>
+        </div>
+        <div class="dress-info"><p>Dresses</p><strong>Pink Striped Shirt Dress</strong></div>
       </div>
 
-      <div class="dress-item">
-        <img src="IMG_3206.jpg" alt="Tweed Mini Dress" />
-        <div class="dress-overlay"><span>Tweed Mini Dress</span></div>
+      <!-- Dress 6: Mint Green Paisley -->
+      <div class="dress-card">
+        <div class="carousel" id="c6">
+          <div class="carousel-slides">
+            <img src="1000188112.jpg" alt="Mint Green Paisley Maxi Dress" />
+            <img src="1000188119.jpg" alt="Mint Green Paisley Maxi Dress" />
+            <img src="1000188107.png" alt="Mint Green Paisley Maxi Dress" />
+          </div>
+          <button class="carousel-btn prev" onclick="slide('c6',-1)">&#8592;</button>
+          <button class="carousel-btn next" onclick="slide('c6',1)">&#8594;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goTo('c6',0)"></div>
+            <div class="dot" onclick="goTo('c6',1)"></div>
+            <div class="dot" onclick="goTo('c6',2)"></div>
+          </div>
+        </div>
+        <div class="dress-info"><p>Dresses</p><strong>Mint Green Paisley Maxi Dress</strong></div>
       </div>
 
-      <div class="dress-item">
-        <img src="IMG_3207.jpg" alt="Pink Embroidered Dress" />
-        <div class="dress-overlay"><span>Pink Embroidered Dress</span></div>
+      <!-- Dress 7: White Scallop -->
+      <div class="dress-card">
+        <div class="carousel" id="c7">
+          <div class="carousel-slides">
+            <img src="1000188106.jpg" alt="White Tiered Scallop Dress" />
+            <img src="1000188117.jpg" alt="White Tiered Scallop Dress" />
+          </div>
+          <button class="carousel-btn prev" onclick="slide('c7',-1)">&#8592;</button>
+          <button class="carousel-btn next" onclick="slide('c7',1)">&#8594;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goTo('c7',0)"></div>
+            <div class="dot" onclick="goTo('c7',1)"></div>
+          </div>
+        </div>
+        <div class="dress-info"><p>Dresses</p><strong>White Tiered Scallop Dress</strong></div>
       </div>
 
-      <div class="dress-item">
-        <img src="IMG_3208.jpg" alt="White Gold Print Dress" />
-        <div class="dress-overlay"><span>White Gold Print Dress</span></div>
+      <!-- Dress 8: Orange Puff Sleeve -->
+      <div class="dress-card">
+        <div class="carousel" id="c8">
+          <div class="carousel-slides">
+            <img src="1000188122.jpg" alt="Orange Puff Sleeve Tiered Maxi" />
+            <img src="1000188109.jpg" alt="Orange Puff Sleeve Tiered Maxi" />
+            <img src="1000188114.jpg" alt="Orange Puff Sleeve Tiered Maxi" />
+          </div>
+          <button class="carousel-btn prev" onclick="slide('c8',-1)">&#8592;</button>
+          <button class="carousel-btn next" onclick="slide('c8',1)">&#8594;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goTo('c8',0)"></div>
+            <div class="dot" onclick="goTo('c8',1)"></div>
+            <div class="dot" onclick="goTo('c8',2)"></div>
+          </div>
+        </div>
+        <div class="dress-info"><p>Dresses</p><strong>Orange Puff Sleeve Tiered Maxi</strong></div>
       </div>
 
-      <div class="dress-item">
-        <img src="IMG_3209.jpg" alt="Coral Ruffle Dress" />
-        <div class="dress-overlay"><span>Coral Ruffle Dress</span></div>
+      <!-- Dress 9: Black Pink Flower -->
+      <div class="dress-card">
+        <div class="carousel" id="c9">
+          <div class="carousel-slides">
+            <img src="1000188131.jpg" alt="Black Dress with Pink 3D Flower" />
+            <img src="1000188138.png" alt="Black Dress with Pink 3D Flower" />
+            <img src="1000188134.jpg" alt="Black Dress with Pink 3D Flower" />
+          </div>
+          <button class="carousel-btn prev" onclick="slide('c9',-1)">&#8592;</button>
+          <button class="carousel-btn next" onclick="slide('c9',1)">&#8594;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goTo('c9',0)"></div>
+            <div class="dot" onclick="goTo('c9',1)"></div>
+            <div class="dot" onclick="goTo('c9',2)"></div>
+          </div>
+        </div>
+        <div class="dress-info"><p>Dresses</p><strong>Black Dress with Pink 3D Flower</strong></div>
       </div>
 
-      <div class="dress-item">
-        <img src="IMG_3211.jpg" alt="Blue Brocade Tiered Dress" />
-        <div class="dress-overlay"><span>Blue Brocade Tiered Dress</span></div>
+      <!-- Dress 10: Pink Lavender Festive -->
+      <div class="dress-card">
+        <div class="carousel" id="c10">
+          <div class="carousel-slides">
+            <img src="1000188104.jpg" alt="Pink & Lavender Festive Dress" />
+            <img src="1000188103.jpg" alt="Pink & Lavender Festive Dress" />
+            <img src="1000188127.jpg" alt="Pink & Lavender Festive Dress" />
+            <img src="1000188126.png" alt="Pink & Lavender Festive Dress" />
+          </div>
+          <button class="carousel-btn prev" onclick="slide('c10',-1)">&#8592;</button>
+          <button class="carousel-btn next" onclick="slide('c10',1)">&#8594;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goTo('c10',0)"></div>
+            <div class="dot" onclick="goTo('c10',1)"></div>
+            <div class="dot" onclick="goTo('c10',2)"></div>
+            <div class="dot" onclick="goTo('c10',3)"></div>
+          </div>
+        </div>
+        <div class="dress-info"><p>Dresses</p><strong>Pink & Lavender Festive Dress</strong></div>
       </div>
 
-      <div class="dress-item">
-        <img src="IMG_3212.jpg" alt="Pink Coral Maxi Dress" />
-        <div class="dress-overlay"><span>Pink Coral Maxi Dress</span></div>
+      <!-- Dress 11: Dusty Pink Shimmer -->
+      <div class="dress-card">
+        <div class="carousel" id="c11">
+          <div class="carousel-slides">
+            <img src="1000188129.jpg" alt="Dusty Pink Shimmer Tiered Midi" />
+            <img src="1000188133.jpg" alt="Dusty Pink Shimmer Tiered Midi" />
+            <img src="1000188125.jpg" alt="Dusty Pink Shimmer Tiered Midi" />
+          </div>
+          <button class="carousel-btn prev" onclick="slide('c11',-1)">&#8592;</button>
+          <button class="carousel-btn next" onclick="slide('c11',1)">&#8594;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goTo('c11',0)"></div>
+            <div class="dot" onclick="goTo('c11',1)"></div>
+            <div class="dot" onclick="goTo('c11',2)"></div>
+          </div>
+        </div>
+        <div class="dress-info"><p>Dresses</p><strong>Dusty Pink Shimmer Tiered Midi</strong></div>
       </div>
 
-      <div class="dress-item">
-        <img src="IMG_3213.PNG" alt="Pastel Embroidered Dress" />
-        <div class="dress-overlay"><span>Pastel Embroidered Dress</span></div>
+      <!-- Dress 12: Tweed Mini -->
+      <div class="dress-card">
+        <div class="carousel" id="c12">
+          <div class="carousel-slides">
+            <img src="1000188111.jpg" alt="Cream & Black Tweed Mini Dress" />
+            <img src="1000188137.jpg" alt="Cream & Black Tweed Mini Dress" />
+            <img src="1000188135.jpg" alt="Cream & Black Tweed Mini Dress" />
+          </div>
+          <button class="carousel-btn prev" onclick="slide('c12',-1)">&#8592;</button>
+          <button class="carousel-btn next" onclick="slide('c12',1)">&#8594;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goTo('c12',0)"></div>
+            <div class="dot" onclick="goTo('c12',1)"></div>
+            <div class="dot" onclick="goTo('c12',2)"></div>
+          </div>
+        </div>
+        <div class="dress-info"><p>Dresses</p><strong>Cream & Black Tweed Mini Dress</strong></div>
       </div>
 
-      <div class="dress-item">
-        <img src="IMG_3214.jpg" alt="Pink Lavender Festive Dress" />
-        <div class="dress-overlay"><span>Pink Lavender Festive Dress</span></div>
-      </div>
-
-      <div class="dress-item">
-        <img src="IMG_3215.jpg" alt="Gold Embroidered Flared Dress" />
-        <div class="dress-overlay"><span>Gold Embroidered Flared Dress</span></div>
-      </div>
-
-      <div class="dress-item">
-        <img src="IMG_3216.PNG" alt="Striped Summer Dress" />
-        <div class="dress-overlay"><span>Striped Summer Dress</span></div>
-      </div>
-
-      <div class="dress-item">
-        <img src="IMG_3218.PNG" alt="Blue Floral Brocade Dress" />
-        <div class="dress-overlay"><span>Blue Floral Brocade Dress</span></div>
-      </div>
-
-      <div class="dress-item">
-        <img src="IMG_3199.jpg" alt="Ivory Embroidered Dress" />
-        <div class="dress-overlay"><span>Ivory Embroidered Dress</span></div>
-      </div>
-
-      <div class="dress-item">
-        <img src="IMG_3198.jpg" alt="Classic Printed Dress" />
-        <div class="dress-overlay"><span>Classic Printed Dress</span></div>
-      </div>
-
-      <div class="dress-item">
-        <img src="IMG_3196.jpg" alt="Elegant Evening Dress" />
-        <div class="dress-overlay"><span>Elegant Evening Dress</span></div>
-      </div>
-
-      <div class="dress-item">
-        <img src="IMG_3220.jpg" alt="Statement Dress" />
-        <div class="dress-overlay"><span>Statement Dress</span></div>
+      <!-- Dress 13: Blue Gold Brocade -->
+      <div class="dress-card">
+        <div class="carousel" id="c13">
+          <div class="carousel-slides">
+            <img src="1000188136.jpg" alt="Blue & Gold Brocade Tiered Mini" />
+            <img src="1000188128.jpg" alt="Blue & Gold Brocade Tiered Mini" />
+            <img src="1000188121.jpg" alt="Blue & Gold Brocade Tiered Mini" />
+          </div>
+          <button class="carousel-btn prev" onclick="slide('c13',-1)">&#8592;</button>
+          <button class="carousel-btn next" onclick="slide('c13',1)">&#8594;</button>
+          <div class="carousel-dots">
+            <div class="dot active" onclick="goTo('c13',0)"></div>
+            <div class="dot" onclick="goTo('c13',1)"></div>
+            <div class="dot" onclick="goTo('c13',2)"></div>
+          </div>
+        </div>
+        <div class="dress-info"><p>Dresses</p><strong>Blue & Gold Brocade Tiered Mini</strong></div>
       </div>
 
     </div>
@@ -499,9 +692,7 @@
   <!-- SHIRTS -->
   <section class="shirts-section" id="shirts">
     <p class="section-label">Shirts</p>
-    <div class="shirts-coming">
-      Coming Soon — New Shirts Dropping
-    </div>
+    <div class="shirts-coming">Coming Soon — New Shirts Dropping</div>
   </section>
 
   <!-- MANIFESTO -->
@@ -566,6 +757,31 @@
   </footer>
 
   <script>
+    const state = {};
+
+    function getSlides(id) {
+      return document.querySelector('#' + id + ' .carousel-slides');
+    }
+    function getDots(id) {
+      return document.querySelectorAll('#' + id + ' .dot');
+    }
+    function count(id) {
+      return document.querySelectorAll('#' + id + ' .carousel-slides img').length;
+    }
+    function updateCarousel(id) {
+      const i = state[id] || 0;
+      getSlides(id).style.transform = 'translateX(-' + (i * 100) + '%)';
+      getDots(id).forEach((d, idx) => d.classList.toggle('active', idx === i));
+    }
+    function slide(id, dir) {
+      const n = count(id);
+      state[id] = ((state[id] || 0) + dir + n) % n;
+      updateCarousel(id);
+    }
+    function goTo(id, idx) {
+      state[id] = idx;
+      updateCarousel(id);
+    }
     function handleSubmit(e) {
       e.preventDefault();
       document.getElementById('form-confirm').style.display = 'block';
@@ -573,7 +789,5 @@
       e.target.querySelector('.btn-submit').disabled = true;
     }
   </script>
-</body>
-</html>
 </body>
 </html>
