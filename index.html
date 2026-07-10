@@ -7,17 +7,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --ink:    #0e0e0e;
-      --paper:  #f7f5f2;
-      --warm:   #c8b89a;
-      --mid:    #8a8279;
-      --rule:   #d8d3cc;
+      --ink:   #0e0e0e;
+      --paper: #f7f5f2;
+      --warm:  #c8b89a;
+      --mid:   #8a8279;
+      --rule:  #d8d3cc;
     }
-
     html { scroll-behavior: smooth; }
-
     body {
       background: var(--paper);
       color: var(--ink);
@@ -40,7 +37,6 @@
       background: var(--paper);
       border-bottom: 1px solid var(--rule);
     }
-
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
@@ -50,13 +46,7 @@
       color: var(--ink);
       text-decoration: none;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 36px;
-      list-style: none;
-    }
-
+    .nav-links { display: flex; gap: 36px; list-style: none; }
     .nav-links a {
       text-decoration: none;
       color: var(--mid);
@@ -65,7 +55,6 @@
       text-transform: uppercase;
       transition: color 0.2s;
     }
-
     .nav-links a:hover { color: var(--ink); }
 
     /* HERO */
@@ -75,14 +64,12 @@
       grid-template-columns: 1fr 1fr;
       padding-top: 73px;
     }
-
     .hero-text {
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: 80px 48px 80px 72px;
     }
-
     .hero-eyebrow {
       font-size: 11px;
       letter-spacing: 0.22em;
@@ -90,7 +77,6 @@
       color: var(--warm);
       margin-bottom: 28px;
     }
-
     .hero-headline {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 300;
@@ -99,12 +85,7 @@
       letter-spacing: -0.01em;
       margin-bottom: 32px;
     }
-
-    .hero-headline em {
-      font-style: italic;
-      color: var(--warm);
-    }
-
+    .hero-headline em { font-style: italic; color: var(--warm); }
     .hero-sub {
       color: var(--mid);
       font-size: 14px;
@@ -112,7 +93,6 @@
       line-height: 1.8;
       margin-bottom: 48px;
     }
-
     .btn-primary {
       display: inline-block;
       padding: 14px 36px;
@@ -125,48 +105,17 @@
       transition: background 0.2s;
       align-self: flex-start;
     }
-
     .btn-primary:hover { background: #2a2a2a; }
-
     .hero-visual {
-      background: #e8e3dc;
       position: relative;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
-
-    .hero-visual-inner {
+    .hero-visual img {
       width: 100%;
       height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      object-fit: cover;
+      object-position: top;
     }
-
-    /* Signature element: a large typographic "H" watermark behind a garment silhouette */
-    .hero-watermark {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 480px;
-      font-weight: 300;
-      color: rgba(200,184,154,0.18);
-      line-height: 1;
-      user-select: none;
-      position: absolute;
-    }
-
-    .hero-garment {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-    }
-
-    .hero-garment svg {
-      width: 160px;
-      opacity: 0.55;
-    }
-
     .hero-caption {
       position: absolute;
       bottom: 36px;
@@ -174,9 +123,10 @@
       font-size: 10px;
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--mid);
+      color: var(--paper);
       writing-mode: vertical-rl;
       text-orientation: mixed;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.4);
     }
 
     /* MARQUEE */
@@ -187,14 +137,11 @@
       padding: 14px 0;
       background: var(--paper);
     }
-
     .marquee-track {
       display: flex;
-      gap: 0;
       animation: marquee 22s linear infinite;
       white-space: nowrap;
     }
-
     .marquee-track span {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
@@ -202,34 +149,23 @@
       color: var(--warm);
       padding: 0 40px;
     }
-
-    .marquee-track span.sep {
-      font-style: normal;
-      color: var(--rule);
-      padding: 0;
-    }
-
+    .marquee-track span.sep { font-style: normal; color: var(--rule); padding: 0; }
     @keyframes marquee {
       from { transform: translateX(0); }
       to   { transform: translateX(-50%); }
     }
 
-    /* COLLECTION TEASER */
-    .collection {
-      padding: 120px 72px;
-    }
-
+    /* SECTION LABEL */
     .section-label {
       font-size: 10px;
       letter-spacing: 0.24em;
       text-transform: uppercase;
       color: var(--warm);
-      margin-bottom: 56px;
+      margin-bottom: 48px;
       display: flex;
       align-items: center;
       gap: 16px;
     }
-
     .section-label::after {
       content: '';
       flex: 1;
@@ -238,116 +174,93 @@
       max-width: 80px;
     }
 
-    .collection-grid {
+    /* DRESSES SECTION */
+    .dresses-section { padding: 100px 72px; }
+    .dresses-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
     }
-
-    .collection-item {
-      background: #e4dfd8;
-      aspect-ratio: 3/4;
+    .dress-item {
       position: relative;
+      aspect-ratio: 3/4;
       overflow: hidden;
+      background: #e4dfd8;
       cursor: pointer;
     }
-
-    .collection-item:hover .item-overlay { opacity: 1; }
-
-    .item-overlay {
+    .dress-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.4s ease;
+    }
+    .dress-item:hover img { transform: scale(1.04); }
+    .dress-item:hover .dress-overlay { opacity: 1; }
+    .dress-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(14,14,14,0.35);
+      background: rgba(14,14,14,0.3);
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-end;
+      padding: 20px;
       opacity: 0;
       transition: opacity 0.3s;
     }
-
-    .item-overlay span {
+    .dress-overlay span {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
+      font-size: 16px;
       color: var(--paper);
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
     }
 
-    .item-label {
-      position: absolute;
-      bottom: 18px;
-      left: 20px;
-    }
-
-    .item-label p {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--mid);
-    }
-
-    .item-label strong {
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--ink);
-      letter-spacing: 0.04em;
-    }
-
-    /* placeholder garment shapes in the grid */
-    .item-shape {
-      width: 100%;
-      height: 100%;
+    /* SHIRTS SECTION */
+    .shirts-section { padding: 100px 72px; border-top: 1px solid var(--rule); }
+    .shirts-coming {
       display: flex;
       align-items: center;
       justify-content: center;
+      height: 260px;
+      border: 1px dashed var(--rule);
+      color: var(--mid);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 22px;
+      letter-spacing: 0.06em;
     }
 
-    .item-shape svg { opacity: 0.3; }
-
-    /* ABOUT / MANIFESTO */
+    /* MANIFESTO */
     .manifesto {
-      padding: 120px 72px;
+      padding: 100px 72px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
       align-items: center;
       border-top: 1px solid var(--rule);
     }
-
     .manifesto-quote {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(32px, 3.5vw, 52px);
       font-weight: 300;
       line-height: 1.2;
-      letter-spacing: -0.01em;
     }
-
     .manifesto-quote em { font-style: italic; color: var(--warm); }
-
-    .manifesto-body p {
-      color: var(--mid);
-      font-size: 14px;
-      line-height: 1.9;
-      margin-bottom: 20px;
-    }
+    .manifesto-body p { color: var(--mid); font-size: 14px; line-height: 1.9; margin-bottom: 20px; }
 
     /* CONTACT */
     .contact {
-      padding: 120px 72px;
+      padding: 100px 72px;
       background: var(--ink);
       color: var(--paper);
     }
-
     .contact .section-label { color: var(--warm); }
     .contact .section-label::after { background: #2a2a2a; }
-
     .contact-inner {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 80px;
       align-items: start;
     }
-
     .contact-headline {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(38px, 4vw, 62px);
@@ -355,44 +268,13 @@
       line-height: 1.1;
       margin-bottom: 24px;
     }
-
     .contact-headline em { font-style: italic; color: var(--warm); }
-
-    .contact-sub {
-      color: #8a8279;
-      font-size: 14px;
-      line-height: 1.8;
-      max-width: 360px;
-    }
-
-    .contact-form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .field label {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--mid);
-    }
-
-    .field input,
-    .field textarea,
-    .field select {
+    .contact-sub { color: #8a8279; font-size: 14px; line-height: 1.8; max-width: 360px; }
+    .contact-form { display: flex; flex-direction: column; gap: 20px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: flex; flex-direction: column; gap: 8px; }
+    .field label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mid); }
+    .field input, .field textarea, .field select {
       background: transparent;
       border: none;
       border-bottom: 1px solid #2a2a2a;
@@ -405,19 +287,11 @@
       transition: border-color 0.2s;
       width: 100%;
     }
-
-    .field input::placeholder,
-    .field textarea::placeholder { color: #3a3a3a; }
-
-    .field input:focus,
-    .field textarea:focus,
-    .field select:focus { border-color: var(--warm); }
-
+    .field input::placeholder, .field textarea::placeholder { color: #3a3a3a; }
+    .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--warm); }
     .field select { appearance: none; cursor: pointer; }
     .field select option { background: var(--ink); }
-
     .field textarea { resize: none; height: 100px; }
-
     .btn-submit {
       align-self: flex-start;
       padding: 14px 40px;
@@ -433,7 +307,6 @@
       transition: opacity 0.2s;
       margin-top: 8px;
     }
-
     .btn-submit:hover { opacity: 0.85; }
 
     /* FOOTER */
@@ -444,36 +317,27 @@
       align-items: center;
       justify-content: space-between;
     }
-
-    footer .logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 16px;
-      letter-spacing: 0.18em;
-      color: var(--mid);
-    }
-
-    footer p {
-      font-size: 11px;
-      color: #3a3a3a;
-      letter-spacing: 0.08em;
-    }
+    footer .logo { font-family: 'Cormorant Garamond', serif; font-size: 16px; letter-spacing: 0.18em; color: var(--mid); }
+    footer p { font-size: 11px; color: #3a3a3a; letter-spacing: 0.08em; }
 
     /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .dresses-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     @media (max-width: 768px) {
       nav { padding: 20px 24px; }
       .nav-links { display: none; }
       .hero { grid-template-columns: 1fr; }
-      .hero-visual { display: none; }
+      .hero-visual { height: 60vw; }
       .hero-text { padding: 60px 24px; }
-      .collection { padding: 80px 24px; }
-      .collection-grid { grid-template-columns: 1fr 1fr; }
-      .manifesto { grid-template-columns: 1fr; padding: 80px 24px; gap: 40px; }
-      .contact { padding: 80px 24px; }
+      .dresses-section, .shirts-section { padding: 60px 24px; }
+      .dresses-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .manifesto { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+      .contact { padding: 60px 24px; }
       .contact-inner { grid-template-columns: 1fr; gap: 48px; }
       .form-row { grid-template-columns: 1fr; }
       footer { padding: 28px 24px; flex-direction: column; gap: 12px; text-align: center; }
     }
-
     @media (prefers-reduced-motion: reduce) {
       .marquee-track { animation: none; }
     }
@@ -485,7 +349,8 @@
   <nav>
     <a href="#" class="nav-logo">hangerpartyy</a>
     <ul class="nav-links">
-      <li><a href="#collection">Collection</a></li>
+      <li><a href="#dresses">Dresses</a></li>
+      <li><a href="#shirts">Shirts</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -497,21 +362,10 @@
       <p class="hero-eyebrow">New Collection — 2026</p>
       <h1 class="hero-headline">Dressed<br/>for the<br/><em>woman you are.</em></h1>
       <p class="hero-sub">Bold colours. Clean cuts. Clothes that work as hard as you do — without costing the earth. hangerpartyy is for the Indian working woman who refuses to blend in.</p>
-      <a href="#contact" class="btn-primary">Explore the Collection</a>
+      <a href="#dresses" class="btn-primary">Explore the Collection</a>
     </div>
     <div class="hero-visual">
-      <div class="hero-visual-inner">
-        <div class="hero-watermark">H</div>
-        <div class="hero-garment">
-          <!-- hanger / garment SVG icon -->
-          <svg viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M60 18 C60 18 60 10 68 10 C76 10 76 20 68 22" stroke="#0e0e0e" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-            <path d="M68 22 L60 30" stroke="#0e0e0e" stroke-width="1.5" stroke-linecap="round"/>
-            <path d="M60 30 L10 75 Q8 78 12 80 L108 80 Q112 78 110 75 Z" stroke="#0e0e0e" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
-            <rect x="20" y="80" width="80" height="50" rx="2" stroke="#0e0e0e" stroke-width="1.5" fill="none"/>
-          </svg>
-        </div>
-      </div>
+      <img src="IMG_3214.jpg" alt="hangerpartyy hero look" />
       <span class="hero-caption">Bold. Classy. Yours.</span>
     </div>
   </section>
@@ -534,28 +388,119 @@
     </div>
   </div>
 
-  <!-- COLLECTION -->
-  <section class="collection" id="collection">
-    <p class="section-label">The Collection</p>
-    <div class="collection-grid">
-      <!-- Item 1: Shirts -->
-      <div class="collection-item">
-        <div class="item-shape">
-          <!-- Shirt silhouette -->
-          <svg width="100" viewBox="0 0 80 100" fill="none"><path d="M20 5 L10 30 L30 35 L30 85 L50 85 L50 35 L70 30 L60 5 Z" stroke="#0e0e0e" stroke-width="1.2" fill="none"/><path d="M20 5 Q30 12 40 10 Q50 12 60 5" stroke="#0e0e0e" stroke-width="1.2" fill="none"/></svg>
-        </div>
-        <div class="item-overlay"><span>Shop Shirts</span></div>
-        <div class="item-label"><p>Category</p><strong>Shirts</strong></div>
+  <!-- DRESSES -->
+  <section class="dresses-section" id="dresses">
+    <p class="section-label">Dresses</p>
+    <div class="dresses-grid">
+
+      <div class="dress-item">
+        <img src="IMG_3195.jpg" alt="Black Tie-Dye Mermaid Dress" />
+        <div class="dress-overlay"><span>Black Tie-Dye Mermaid Dress</span></div>
       </div>
-      <!-- Item 2: Dresses -->
-      <div class="collection-item" style="background:#ddd8d0;">
-        <div class="item-shape">
-          <!-- Dress silhouette -->
-          <svg width="100" viewBox="0 0 80 110" fill="none"><path d="M25 5 Q40 2 55 5 L65 30 L50 35 L55 105 L25 105 L30 35 L15 30 Z" stroke="#0e0e0e" stroke-width="1.2" fill="none"/><path d="M25 5 Q32 14 40 12 Q48 14 55 5" stroke="#0e0e0e" stroke-width="1.2" fill="none"/></svg>
-        </div>
-        <div class="item-overlay"><span>Shop Dresses</span></div>
-        <div class="item-label"><p>Category</p><strong>Dresses</strong></div>
+
+      <div class="dress-item">
+        <img src="IMG_3201.jpg" alt="White & Gold Embroidered Midi Dress" />
+        <div class="dress-overlay"><span>White & Gold Embroidered Midi Dress</span></div>
       </div>
+
+      <div class="dress-item">
+        <img src="IMG_3202.jpg" alt="Pink Striped Shirt Dress" />
+        <div class="dress-overlay"><span>Pink Striped Shirt Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3204.jpg" alt="Pink Ruffle Maxi Dress" />
+        <div class="dress-overlay"><span>Pink Ruffle Maxi Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3205.jpg" alt="Blue Gold Floral Mini Dress" />
+        <div class="dress-overlay"><span>Blue Gold Floral Mini Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3206.jpg" alt="Tweed Mini Dress" />
+        <div class="dress-overlay"><span>Tweed Mini Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3207.jpg" alt="Pink Embroidered Dress" />
+        <div class="dress-overlay"><span>Pink Embroidered Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3208.jpg" alt="White Gold Print Dress" />
+        <div class="dress-overlay"><span>White Gold Print Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3209.jpg" alt="Coral Ruffle Dress" />
+        <div class="dress-overlay"><span>Coral Ruffle Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3211.jpg" alt="Blue Brocade Tiered Dress" />
+        <div class="dress-overlay"><span>Blue Brocade Tiered Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3212.jpg" alt="Pink Coral Maxi Dress" />
+        <div class="dress-overlay"><span>Pink Coral Maxi Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3213.PNG" alt="Pastel Embroidered Dress" />
+        <div class="dress-overlay"><span>Pastel Embroidered Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3214.jpg" alt="Pink Lavender Festive Dress" />
+        <div class="dress-overlay"><span>Pink Lavender Festive Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3215.jpg" alt="Gold Embroidered Flared Dress" />
+        <div class="dress-overlay"><span>Gold Embroidered Flared Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3216.PNG" alt="Striped Summer Dress" />
+        <div class="dress-overlay"><span>Striped Summer Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3218.PNG" alt="Blue Floral Brocade Dress" />
+        <div class="dress-overlay"><span>Blue Floral Brocade Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3199.jpg" alt="Ivory Embroidered Dress" />
+        <div class="dress-overlay"><span>Ivory Embroidered Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3198.jpg" alt="Classic Printed Dress" />
+        <div class="dress-overlay"><span>Classic Printed Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3196.jpg" alt="Elegant Evening Dress" />
+        <div class="dress-overlay"><span>Elegant Evening Dress</span></div>
+      </div>
+
+      <div class="dress-item">
+        <img src="IMG_3220.jpg" alt="Statement Dress" />
+        <div class="dress-overlay"><span>Statement Dress</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SHIRTS -->
+  <section class="shirts-section" id="shirts">
+    <p class="section-label">Shirts</p>
+    <div class="shirts-coming">
+      Coming Soon — New Shirts Dropping
     </div>
   </section>
 
@@ -565,13 +510,13 @@
       Clothes that let you move through the world <em>quietly confident.</em>
     </div>
     <div class="manifesto-body">
-      <p>hangerpartyy was built on a simple belief: that getting dressed should feel effortless. Not because you don't care — but because the clothes do the work.</p>
-      <p>Every piece is cut with intention, in fabrics chosen for how they feel as much as how they look. We're not chasing trends. We're building a wardrobe that holds its ground, season after season.</p>
-      <p>Clean lines. Considered details. Clothes made to be lived in.</p>
+      <p>hangerpartyy was built for the Indian working woman who wants to look stunning without compromise — on quality, on price, or on her own identity.</p>
+      <p>Every piece is bold where it counts, classy where it matters, and made to turn heads in a boardroom or at a celebration. We don't do boring.</p>
+      <p>Colour. Craft. Confidence. That's hangerpartyy.</p>
     </div>
   </section>
 
-  <!-- CONTACT / INQUIRY -->
+  <!-- CONTACT -->
   <section class="contact" id="contact">
     <p class="section-label">Get in Touch</p>
     <div class="contact-inner">
@@ -598,8 +543,8 @@
           <label for="interest">I'm interested in</label>
           <select id="interest">
             <option value="">Select a category</option>
-            <option>Shirts</option>
             <option>Dresses</option>
+            <option>Shirts</option>
             <option>Custom / Wholesale</option>
             <option>General Inquiry</option>
           </select>
@@ -628,5 +573,7 @@
       e.target.querySelector('.btn-submit').disabled = true;
     }
   </script>
+</body>
+</html>
 </body>
 </html>
