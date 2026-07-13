@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,16 +60,18 @@
 
     /* HERO */
     .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding-top: 73px;
+      text-align: center;
     }
     .hero-text {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: 80px 48px 80px 72px;
+      align-items: center;
+      padding: 80px 48px;
     }
     .hero-eyebrow {
       font-size: 11px;
@@ -174,11 +177,11 @@
     }
 
     /* DRESSES SECTION */
-    .dresses-section { padding: 100px 72px; }
+    .dresses-section { padding: 80px 48px; }
     .dresses-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
     }
 
     /* DRESS CARD WITH CAROUSEL */
@@ -240,17 +243,17 @@
     }
     .dot.active { background: white; }
     .dress-info {
-      padding: 16px 20px;
+      padding: 10px 14px;
     }
     .dress-info p {
-      font-size: 10px;
+      font-size: 9px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--mid);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
     .dress-info strong {
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 400;
       color: var(--ink);
       letter-spacing: 0.04em;
@@ -363,17 +366,16 @@
     footer p { font-size: 11px; color: #3a3a3a; letter-spacing: 0.08em; }
 
     /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .dresses-grid { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 1100px) {
+      .dresses-grid { grid-template-columns: repeat(4, 1fr); }
     }
     @media (max-width: 768px) {
       nav { padding: 20px 24px; }
       .nav-links { display: none; }
-      .hero { grid-template-columns: 1fr; }
-      .hero-visual { height: 60vw; }
+      .hero { min-height: 40vh; }
       .hero-text { padding: 60px 24px; }
-      .dresses-section, .shirts-section { padding: 60px 24px; }
-      .dresses-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .dresses-section, .shirts-section { padding: 40px 16px; }
+      .dresses-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
       .manifesto { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
       .contact { padding: 60px 24px; }
       .contact-inner { grid-template-columns: 1fr; gap: 48px; }
@@ -406,11 +408,8 @@
       <p class="hero-sub">Bold colours. Clean cuts. Clothes that work as hard as you do — without costing the earth. hangerpartyy is for the Indian working woman who refuses to blend in.</p>
       <a href="#dresses" class="btn-primary">Explore the Collection</a>
     </div>
-    <div class="hero-visual">
-      <img src="1000188136.jpg" alt="hangerpartyy hero look" />
-      <span class="hero-caption">Bold. Classy. Yours.</span>
-    </div>
   </section>
+
 
   <!-- MARQUEE -->
   <div class="marquee-wrap" aria-hidden="true">
